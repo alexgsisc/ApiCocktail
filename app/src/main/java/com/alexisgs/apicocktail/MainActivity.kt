@@ -2,9 +2,14 @@ package com.alexisgs.apicocktail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
+import com.alexisgs.apicocktail.tragos.data.api.DataSource
+import com.alexisgs.apicocktail.tragos.domain.RepoDrinkImpl
+import com.alexisgs.apicocktail.tragos.viewmodel.DrinkViewModel
+import com.alexisgs.apicocktail.tragos.viewmodel.ViewModelFactory
 
 class MainActivity : AppCompatActivity() {
 
