@@ -10,8 +10,8 @@ import retrofit2.http.Query
  */
 interface ApiService {
 
-    @GET("search.php?s=")
-    suspend fun getDrinkByName(@Query("nameDrink") drinkName: String): ListDrinks
+    @GET("search.php")
+    suspend fun getDrinkByName(@Query("s") drinkName: String): ListDrinks
 
 
     class Builder : BaseServiceBuild<ApiService>() {

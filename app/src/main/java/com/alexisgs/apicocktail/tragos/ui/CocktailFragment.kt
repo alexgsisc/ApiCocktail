@@ -1,11 +1,10 @@
 package com.alexisgs.apicocktail.tragos.ui
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 
@@ -45,19 +44,10 @@ class CocktailFragment : Fragment(), DrinkRecyclerView.AdapterRecyclerView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        setHasOptionsMenu(true)
 
         rv_drink.layoutManager = LinearLayoutManager(this!!.context)
 
-        //Add Decoration
-        /*rv_drink.addItemDecoration(
-            DividerItemDecoration(
-                requireContext(),
-                DividerItemDecoration.VERTICAL
-            )
-        )
-        */
-        //sabe el ciclo de vida viewLifecycleOwner
         drinkViewModel.fetchListDrink.observe(viewLifecycleOwner, Observer { result ->
             when (result) {
                 is Resource.Loading -> {
@@ -73,13 +63,32 @@ class CocktailFragment : Fragment(), DrinkRecyclerView.AdapterRecyclerView {
                 }
             }
 
-            //
         })
 
+    }
 
-        /*bt_next.setOnClickListener {
-            findNavController().navigate(R.id.detailCocktailFragment)
-        }*/
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        requireActivity().menuInflater.inflate(R.menu.main_menu, menu)
+
+        var item = menu.findItem(R.id.actions_search)
+        var searchView: SearchView = item.actionView as SearchView
+        searchView.queryHint = getString(R.string.hint_search)
+        searchView.setOnQueryTextListener(
+            object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    drinkViewModel.setDrinkName(query!!)
+                    return false
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+
+                    return false
+                }
+
+            }
+        )
+
+        return super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun viewsClickItem(result: Drink) {
