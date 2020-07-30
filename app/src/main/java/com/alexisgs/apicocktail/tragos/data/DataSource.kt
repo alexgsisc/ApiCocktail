@@ -2,6 +2,7 @@ package com.alexisgs.apicocktail.tragos.data
 
 import com.alexisgs.apicocktail.common.Resource
 import com.alexisgs.apicocktail.common.RetrofitClient
+import com.alexisgs.apicocktail.tragos.data.api.ApiService
 import com.alexisgs.apicocktail.tragos.data.model.Drink
 
 /**
@@ -9,8 +10,10 @@ import com.alexisgs.apicocktail.tragos.data.model.Drink
  */
 class DataSource {
 
+    var apiServices: ApiService = ApiService.Builder().build()
+
     suspend fun getDrinkByName(drinkName: String): Resource<List<Drink>> {
-        return Resource.Success(RetrofitClient.retrofitBuild.getDrinkByName(drinkName).drinks)
+        return Resource.Success(apiServices.getDrinkByName(drinkName).drinks)
     }
 
 }

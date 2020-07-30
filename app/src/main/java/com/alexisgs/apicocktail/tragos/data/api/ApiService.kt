@@ -1,6 +1,6 @@
 package com.alexisgs.apicocktail.tragos.data.api
 
-import com.alexisgs.apicocktail.tragos.data.model.Drink
+import com.alexisgs.apicocktail.common.service.BaseServiceBuild
 import com.alexisgs.apicocktail.tragos.data.model.ListDrinks
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -13,4 +13,10 @@ interface ApiService {
     @GET("search.php?s=")
     suspend fun getDrinkByName(@Query("nameDrink") drinkName: String): ListDrinks
 
+
+    class Builder : BaseServiceBuild<ApiService>() {
+        override fun build(): ApiService {
+            return retrofitBuild.build().create(ApiService::class.java)
+        }
+    }
 }
