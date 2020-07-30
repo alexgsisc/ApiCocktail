@@ -12,7 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alexisgs.apicocktail.R
 import com.alexisgs.apicocktail.common.Resource
-import com.alexisgs.apicocktail.tragos.data.api.DataSource
+import com.alexisgs.apicocktail.tragos.data.DataSource
 import com.alexisgs.apicocktail.tragos.data.model.Drink
 import com.alexisgs.apicocktail.tragos.domain.RepoDrinkImpl
 import com.alexisgs.apicocktail.tragos.ui.adapter.DrinkRecyclerView

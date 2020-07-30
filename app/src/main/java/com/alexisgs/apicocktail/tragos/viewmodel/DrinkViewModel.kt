@@ -15,7 +15,7 @@ class DrinkViewModel(private val repo: RepoDrink) : ViewModel() {
     val fetchListDrink = liveData(Dispatchers.IO) {
         emit(Resource.Loading())
         try {
-            emit(repo.getDrinksList())
+            emit(repo.getDrinksList("margarita"))
         } catch (e: Exception) {
             emit(Resource.FailSuccess(e))
         }
