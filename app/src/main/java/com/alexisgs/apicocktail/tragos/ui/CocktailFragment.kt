@@ -94,7 +94,10 @@ class CocktailFragment : Fragment(), DrinkRecyclerView.AdapterRecyclerView {
     override fun viewsClickItem(result: Drink) {
         val bundle = Bundle()
         bundle.putParcelable("KEY_DRINK", result)
-        findNavController().navigate(R.id.detailCocktailFragment, bundle)
+        //Navega directo al fragment R.id es el del fragmento en el navigation
+        //findNavController().navigate(R.id.detailCocktailFragment, bundle)
+        //Navega con el id de la flecha si se asignan animaciones para que se vea
+        findNavController().navigate(R.id.action_cocktailFragment_to_detailCocktailFragment,bundle)
     }
 
 

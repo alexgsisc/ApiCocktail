@@ -4,6 +4,7 @@ import android.util.Log
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
@@ -21,8 +22,14 @@ abstract class BaseServiceBuild<T : Any> {
     }*/
 
     init {
+
+        val loginInterceptor = HttpLoggingInterceptor()
+        loginInterceptor.level = HttpLoggingInterceptor.Level.BODY
+
         val okHttpClientBuilder = OkHttpClient().newBuilder()
+
         okHttpClientBuilder
+            .addInterceptor(loginInterceptor)
             .readTimeout(2, TimeUnit.MINUTES)
             .writeTimeout(2, TimeUnit.MINUTES)
             .connectTimeout(2, TimeUnit.MINUTES)

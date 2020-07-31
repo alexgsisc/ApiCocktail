@@ -12,7 +12,11 @@
         tools:layout="@layout/fragment_cocktail">
         <action
             android:id="@+id/action_cocktailFragment_to_detailCocktailFragment"
-            app:destination="@id/detailCocktailFragment" />
+            app:destination="@id/detailCocktailFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
     </fragment>
     <fragment
         android:id="@+id/detailCocktailFragment"

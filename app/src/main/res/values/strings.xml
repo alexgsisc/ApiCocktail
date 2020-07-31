@@ -5,4 +5,6 @@
     <string name="title_one">Cocktails</string>
     <string name="title_two">Details Cocktails</string>
     <string name="hint_search">Name Drink</string>
+    <string name="drink_with_alcohol">Bebida con alcohol</string>
+    <string name="soft_drink">Bebida sin alcohol</string>
 </resources>
