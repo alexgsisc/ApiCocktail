@@ -9,6 +9,8 @@ import kotlinx.android.parcel.Parcelize
  */
 @Parcelize
 data class Drink(
+    @SerializedName("idDrink")
+    val idDrink: String = "",
     @SerializedName("strDrinkThumb")
     val image: String = "",
     @SerializedName("strDrink")

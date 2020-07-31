@@ -6,8 +6,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.viewModels
 import com.alexisgs.apicocktail.R
+import com.alexisgs.apicocktail.common.data.AppDataBase
+import com.alexisgs.apicocktail.tragos.data.DataSource
 import com.alexisgs.apicocktail.tragos.data.model.Drink
+import com.alexisgs.apicocktail.tragos.data.model.room.DrinkEntity
+import com.alexisgs.apicocktail.tragos.domain.RepoDrinkImpl
+import com.alexisgs.apicocktail.tragos.viewmodel.DrinkViewModel
+import com.alexisgs.apicocktail.tragos.viewmodel.ViewModelFactory
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import kotlinx.android.synthetic.main.fragment_deatil_cocktail.*
@@ -19,6 +27,9 @@ import kotlinx.android.synthetic.main.item_drink.view.*
 
 class DetailCocktailFragment : Fragment() {
     private lateinit var drink: Drink
+    private val drinkViewModel by viewModels<DrinkViewModel> {
+        ViewModelFactory(RepoDrinkImpl(DataSource(AppDataBase.getDataBase(requireActivity().applicationContext))))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +66,19 @@ class DetailCocktailFragment : Fragment() {
             if (drink.hasAlcoholic == "Alcoholic") getString(R.string.drink_with_alcohol) else getString(
                 R.string.soft_drink
             )
+
+        btn_detail_save.setOnClickListener {
+            drinkViewModel.insertDrink(
+                DrinkEntity(
+                    drink.idDrink,
+                    drink.image,
+                    drink.name,
+                    drink.descriptions,
+                    drink.hasAlcoholic
+                )
+            )
+            Toast.makeText(requireContext(), "Save drink in favorites", Toast.LENGTH_SHORT).show()
+        }
     }
 
     companion object {

@@ -19,6 +19,7 @@ import com.alexisgs.apicocktail.tragos.viewmodel.DrinkViewModel
 import com.alexisgs.apicocktail.tragos.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_cocktail.*
 import androidx.navigation.fragment.findNavController
+import com.alexisgs.apicocktail.common.data.AppDataBase
 
 /**
  * Created by Alexis Guadarrama on 28/07/20.
@@ -27,7 +28,7 @@ class CocktailFragment : Fragment(), DrinkRecyclerView.AdapterRecyclerView {
 
 
     private val drinkViewModel by viewModels<DrinkViewModel> {
-        ViewModelFactory(RepoDrinkImpl(DataSource()))
+        ViewModelFactory(RepoDrinkImpl(DataSource(AppDataBase.getDataBase(requireActivity().applicationContext))))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -97,7 +98,7 @@ class CocktailFragment : Fragment(), DrinkRecyclerView.AdapterRecyclerView {
         //Navega directo al fragment R.id es el del fragmento en el navigation
         //findNavController().navigate(R.id.detailCocktailFragment, bundle)
         //Navega con el id de la flecha si se asignan animaciones para que se vea
-        findNavController().navigate(R.id.action_cocktailFragment_to_detailCocktailFragment,bundle)
+        findNavController().navigate(R.id.action_cocktailFragment_to_detailCocktailFragment, bundle)
     }
 
 

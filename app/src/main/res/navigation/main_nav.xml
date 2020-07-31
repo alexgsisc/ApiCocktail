@@ -17,10 +17,17 @@
             app:exitAnim="@anim/fragment_fade_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_cocktailFragment_to_favoriteFragment"
+            app:destination="@id/favoriteFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailCocktailFragment"
         android:name="com.alexisgs.apicocktail.tragos.ui.DetailCocktailFragment"
         android:label="@string/title_two"
         tools:layout="@layout/fragment_deatil_cocktail" />
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.alexisgs.apicocktail.tragos.ui.FavoriteFragment"
+        android:label="FavoriteFragment" />
 </navigation>
