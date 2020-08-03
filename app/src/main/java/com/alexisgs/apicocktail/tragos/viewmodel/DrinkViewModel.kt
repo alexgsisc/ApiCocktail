@@ -2,6 +2,7 @@ package com.alexisgs.apicocktail.tragos.viewmodel
 
 import androidx.lifecycle.*
 import com.alexisgs.apicocktail.common.Resource
+import com.alexisgs.apicocktail.tragos.data.model.Drink
 import com.alexisgs.apicocktail.tragos.data.model.room.DrinkEntity
 import com.alexisgs.apicocktail.tragos.domain.RepoDrink
 import kotlinx.coroutines.Dispatchers
@@ -57,6 +58,20 @@ class DrinkViewModel(private val repo: RepoDrink) : ViewModel() {
             emit(repo.getAllDrinkFavorite())
         } catch (e: Exception) {
             emit(Resource.FailSuccess(e))
+        }
+    }
+
+    fun deleteDrinkFavorite(drink: Drink) {
+        viewModelScope.launch {
+            repo.deleteDrinkFavorite(
+                DrinkEntity(
+                    drink.idDrink,
+                    drink.image,
+                    drink.name,
+                    drink.descriptions,
+                    drink.hasAlcoholic
+                )
+            )
         }
     }
 }

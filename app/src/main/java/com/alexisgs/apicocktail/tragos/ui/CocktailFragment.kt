@@ -11,7 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alexisgs.apicocktail.R
 import com.alexisgs.apicocktail.common.Resource
-import com.alexisgs.apicocktail.tragos.data.DataSource
+import com.alexisgs.apicocktail.tragos.data.DataSourceImp
 import com.alexisgs.apicocktail.tragos.data.model.Drink
 import com.alexisgs.apicocktail.tragos.domain.RepoDrinkImpl
 import com.alexisgs.apicocktail.tragos.ui.adapter.DrinkRecyclerView
@@ -28,7 +28,7 @@ class CocktailFragment : Fragment(), DrinkRecyclerView.AdapterRecyclerView {
 
 
     private val drinkViewModel by viewModels<DrinkViewModel> {
-        ViewModelFactory(RepoDrinkImpl(DataSource(AppDataBase.getDataBase(requireActivity().applicationContext))))
+        ViewModelFactory(RepoDrinkImpl(DataSourceImp(AppDataBase.getDataBase(requireActivity().applicationContext))))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,6 +66,10 @@ class CocktailFragment : Fragment(), DrinkRecyclerView.AdapterRecyclerView {
 
         })
 
+        btn_favorite.setOnClickListener {
+            findNavController().navigate(R.id.favoriteFragment)
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -92,7 +96,7 @@ class CocktailFragment : Fragment(), DrinkRecyclerView.AdapterRecyclerView {
         return super.onCreateOptionsMenu(menu, inflater)
     }
 
-    override fun viewsClickItem(result: Drink) {
+    override fun viewsClickItem(result: Drink, position: Int) {
         val bundle = Bundle()
         bundle.putParcelable("KEY_DRINK", result)
         //Navega directo al fragment R.id es el del fragmento en el navigation

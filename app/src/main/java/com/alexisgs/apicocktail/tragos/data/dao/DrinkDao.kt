@@ -1,10 +1,9 @@
 package com.alexisgs.apicocktail.tragos.data.dao
 
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.alexisgs.apicocktail.tragos.data.model.room.DrinkEntity
 
+@Dao
 interface DrinkDao {
 
     @Query("SELECT * FROM drinkentity")
@@ -12,4 +11,7 @@ interface DrinkDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertFavoriteDrinkRoom(drinkEntity: DrinkEntity)
+
+    @Delete
+    suspend fun deleteDrink(drinkEntity: DrinkEntity)
 }

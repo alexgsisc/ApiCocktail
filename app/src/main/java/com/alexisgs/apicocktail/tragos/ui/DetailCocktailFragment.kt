@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.alexisgs.apicocktail.R
 import com.alexisgs.apicocktail.common.data.AppDataBase
-import com.alexisgs.apicocktail.tragos.data.DataSource
+import com.alexisgs.apicocktail.tragos.data.DataSourceImp
 import com.alexisgs.apicocktail.tragos.data.model.Drink
 import com.alexisgs.apicocktail.tragos.data.model.room.DrinkEntity
 import com.alexisgs.apicocktail.tragos.domain.RepoDrinkImpl
@@ -19,7 +19,6 @@ import com.alexisgs.apicocktail.tragos.viewmodel.ViewModelFactory
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import kotlinx.android.synthetic.main.fragment_deatil_cocktail.*
-import kotlinx.android.synthetic.main.item_drink.view.*
 
 /**
  * Created by Alexis Guadarrama on 28/07/20.
@@ -28,7 +27,7 @@ import kotlinx.android.synthetic.main.item_drink.view.*
 class DetailCocktailFragment : Fragment() {
     private lateinit var drink: Drink
     private val drinkViewModel by viewModels<DrinkViewModel> {
-        ViewModelFactory(RepoDrinkImpl(DataSource(AppDataBase.getDataBase(requireActivity().applicationContext))))
+        ViewModelFactory(RepoDrinkImpl(DataSourceImp(AppDataBase.getDataBase(requireActivity().applicationContext))))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

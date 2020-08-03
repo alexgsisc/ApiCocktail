@@ -24,7 +24,7 @@ abstract class AppDataBase : RoomDatabase() {
             INSTANCE_DATA = INSTANCE_DATA ?: Room.databaseBuilder(
                 context.applicationContext,
                 AppDataBase::class.java,
-                "drinkentity"
+                "drink_dao"
             ).build()
 
             return INSTANCE_DATA!!

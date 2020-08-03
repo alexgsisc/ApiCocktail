@@ -2,6 +2,7 @@ package com.alexisgs.apicocktail.tragos.domain
 
 import com.alexisgs.apicocktail.common.Resource
 import com.alexisgs.apicocktail.tragos.data.DataSource
+import com.alexisgs.apicocktail.tragos.data.DataSourceImp
 import com.alexisgs.apicocktail.tragos.data.model.Drink
 import com.alexisgs.apicocktail.tragos.data.model.room.DrinkEntity
 
@@ -19,6 +20,10 @@ class RepoDrinkImpl(private val dataSource: DataSource) : RepoDrink {
 
     override suspend fun insertDrinkFavorite(drinkEntity: DrinkEntity) {
         dataSource.insertDrinkInRoom(drinkEntity)
+    }
+
+    override suspend fun deleteDrinkFavorite(drinkEntity: DrinkEntity) {
+        dataSource.deleteDrinkFavorite(drinkEntity)
     }
 
 

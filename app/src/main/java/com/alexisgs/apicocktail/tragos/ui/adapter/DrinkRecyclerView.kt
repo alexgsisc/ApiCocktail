@@ -56,13 +56,13 @@ class DrinkRecyclerView(
             itemView.tv_title.text = item.name
             itemView.tv_subtitle.text = item.descriptions
             itemView.setOnClickListener {
-                viewsAdapter.viewsClickItem(item)
+                viewsAdapter.viewsClickItem(item, position)
             }
         }
     }
 
     interface AdapterRecyclerView {
-        fun viewsClickItem(result: Drink)
+        fun viewsClickItem(result: Drink, position: Int)
     }
 
 }
