@@ -99,9 +99,6 @@ class FavoriteFragment : Fragment(), DrinkRecyclerView.AdapterRecyclerView {
             }
         })
 
-        //viewModelDrink.deleteDrinkFavorite(result)
-        //rv_favorite.adapter?.notifyItemRemoved(position)
-        //rv_favorite.adapter?.notifyItemRangeRemoved(position, rv_favorite.adapter?.itemCount!!)
     }
 
 

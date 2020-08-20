@@ -2,11 +2,19 @@ package com.alexisgs.apicocktail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
+import com.alexisgs.apicocktail.tragos.data.dao.DrinkDao
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var drinkDao: DrinkDao
 
     private lateinit var navController: NavController
 
@@ -19,6 +27,8 @@ class MainActivity : AppCompatActivity() {
 
         //Actions Bar
         NavigationUI.setupActionBarWithNavController(this, navController)
+
+        Log.e("DRINKDAO", "OnCreate: ${drinkDao.hashCode()}")
     }
 
     override fun onSupportNavigateUp(): Boolean {
