@@ -22,8 +22,9 @@ class RepoDrinkImpl(private val dataSource: DataSource) : RepoDrink {
         dataSource.insertDrinkInRoom(drinkEntity)
     }
 
-    override suspend fun deleteDrinkFavorite(drinkEntity: DrinkEntity) {
+    override suspend fun deleteDrinkFavorite(drinkEntity: DrinkEntity): Resource<List<DrinkEntity>> {
         dataSource.deleteDrinkFavorite(drinkEntity)
+        return getAllDrinkFavorite()
     }
 
 
